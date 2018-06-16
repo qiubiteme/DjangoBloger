@@ -3,3 +3,4 @@ from django.apps import AppConfig
 
 class FrontConfig(AppConfig):
     name = 'front'
+    verbose_name = "博客前端"

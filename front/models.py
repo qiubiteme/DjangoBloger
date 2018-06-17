@@ -47,11 +47,11 @@ class Category(models.Model):
     # 分类的url
     # slug = models.CharField("分类url", unique=True, max_length=200)
     # 分类名称
-    name = models.CharField("分类名称", max_length=30, unique=True)
+    category_name = models.CharField("分类名称", max_length=30, unique=True)
     sort = models.IntegerField("分类排序", default=0)
 
     def __str__(self):
-        return self.name
+        return self.category_name
 
     # 分类默认按,序号排序,
     class Meta:
@@ -93,6 +93,8 @@ class Posts(models.Model):
     views = models.PositiveIntegerField('浏览量', default=0)
     # 点赞次数
     likes = models.PositiveIntegerField("点赞", default=0)
+    # 评论次数
+    comment_num = models.PositiveIntegerField("评论次数", default=0)
     # 一对多关系,一个用户可以有多篇文章
     users = models.ForeignKey(
         'Users',  # 关键在这里！！
@@ -108,10 +110,17 @@ class Posts(models.Model):
         'Comment',  # 关键在这里！！
         verbose_name='评论',
         on_delete=models.CASCADE,
+        blank=True,
+        null=True
     )
 
-    # 文章所属分类,多对多关系,一篇文章可以属于多个分类,一个分类可以包含多篇文章
-    category = models.ManyToManyField(Category, verbose_name='文章分类')
+    # 文章所属分类,一对多关系,一篇文章可以属于多个分类,
+    category = models.ForeignKey(
+        "Category",
+        verbose_name='文章分类',
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True)
 
     def __str__(self):
         return self.title
@@ -137,6 +146,7 @@ class Tag(models.Model):
 
 class Comment(models.Model):
     """     用于记录文章评论信息 """
+
     # 作者
     author = models.CharField("评论用户", max_length=30)
     # 邮箱

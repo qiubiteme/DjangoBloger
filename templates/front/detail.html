@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>积木博客首页</title>
+    <title>{{ posts.title }}</title>
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -69,54 +69,34 @@
                     <li class="list-group-item"><a href="web-front/html.html">html</a></li>
                     <li class="list-group-item"><a href="web-front/CSS.html">CSS</a></li>
                     <li class="list-group-item"><a href="web-front/JavaScript基础.html"></a></li>
-                    <li class="list-group-item"><a href="web-front/Web%20API.html">webApi</a></li>
-                    <li class="list-group-item">
-                        <a href="web-front/JavaScript%20-Bom与DOM.md.html">javaScriptDOM</a></li>
-                    <li class="list-group-item">
-                        <a href="web-front/JavaScript高级.html">JavaScript高级</a></li>
-                    <li class="list-group-item">
-                        <a href="web-front/jQuery总结笔记.html">jQuery总结笔记</a></li>
-                    <li class="list-group-item"><a href="web-front/H5orCss3.html">H5orCss3</a></li>
-                    <li class="list-group-item"><a href="web-front/H5-canvas绘图.html">H5-canvas绘图</a></li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+
                 </ul>
             </div>
         </div>
 
         <div class="col-md-9">
-            {% for posts in posts_list %}
-                <div class="card">
+
+            <div class="card">
+                <div class="card-body">
+                    <span class="text-left">{{ posts.users.nickname }}</span>
+                    <h1 class="card-title ">{{ posts.title }}</h1>
                     <div class="card-body">
-                        <span class="text-left">{{ posts.users.nickname }}</span>
-                        <h5 class="card-title "><a href="posts/{{ posts.pk }}">{{ posts.title }}</a></h5>
-                        <p class="card-text">{{ posts.content }}</p>
-                        <div class="card-body">
-                            <span class="text-left">{{ posts.create_time }}</span>
-                            <span class="badge badge-pill badge-info">{{ posts.category }}</span>
-                            <span class="badge badge-success">浏览{{ posts.views }}</span>
-                            <span class="badge badge-secondary">点赞{{ posts.likes. }}</span>
-                            <span class="badge badge-secondary">评论{{ posts.comment_num }}</span>
-                        </div>
+                        <span class="text-left">{{ posts.create_time }}</span>
+                        <span class="badge badge-pill badge-info">{{ posts.category }}</span>
+                        <span class="badge badge-success">浏览{{ posts.views }}</span>
+                        <span class="badge badge-secondary">点赞{{ posts.likes. }}</span>
+                        <span class="badge badge-secondary">评论{{ posts.comment_num }}</span>
                     </div>
+                    <p class="card-text">{{ posts.content }}</p>
+
                 </div>
-            {% empty %}
-                <li class="nav-item">
-                    <a class="nav-link " href="#">暂时没有博客文章</a>
-                </li>
-            {% endfor %}
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 
 <!--页脚-->
-
 <script src="{% static  'libs/jQuery/js/jquery-1.12.4.js.js' %}"></script>
 <script src="{% static 'libs/bootstrap/js/bootstrap.js' %}"></script>
 <script>

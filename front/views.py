@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from front.models import Category, Posts
@@ -12,5 +12,13 @@ def index(request):
     posts_list = Posts.objects.all()
     context = {'category_lsit': category_lsit, 'posts_list': posts_list}
     print(posts_list)
-
     return render(request, 'front/index.html', context)
+
+
+
+
+def detail(request,posts_id):
+    """" 根据模板页传递的,id查询详情文章"""
+    posts = get_object_or_404(Posts, pk=posts_id)
+    return render(request, 'front/detail.html', context={'posts': posts})
+

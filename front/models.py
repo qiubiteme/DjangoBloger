@@ -7,7 +7,7 @@ from django.utils import timezone
 class Options(models.Model):
     """     用于记录网站的信息，如：站点标题，站点描述等    """
     # 网站名称
-    options_name = models.CharField('网站名称', unique=True, max_length=200,default='积木博客')
+    options_name = models.CharField('网站名称', unique=True, max_length=200, default='积木博客')
     # 网站描述
     options_describe = models.TextField('网站描述', blank=True, null=True)
 

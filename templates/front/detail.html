@@ -6,20 +6,20 @@
 
 {# 文章列表的,占位符  #}
 {% block posts %}
-        <div class="card">
+    <div class="card">
+        <div class="card-body">
+            <span class="text-left">{{ posts.users.nickname }}</span>
+            <h1 class="card-title ">{{ posts.title }}</h1>
+            <p class="card-text">{{ posts.content|safe }}</p>
             <div class="card-body">
-                <span class="text-left">{{ posts.users.nickname }}</span>
-                <h1 class="card-title ">{{ posts.title }}</h1>
-                <p class="card-text">{{ posts.content }}</p>
-                <div class="card-body">
-                    <span class="text-left">{{ posts.create_time }}</span>
-                    <span class="badge badge-pill badge-info">{{ posts.category }}</span>
-                    <span class="badge badge-success">浏览{{ posts.views }}</span>
-                    <span class="badge badge-secondary">点赞{{ posts.likes}}</span>
-                    <span class="badge badge-secondary">评论{{ posts.comment_num }}</span>
-                </div>
+                <span class="text-left">{{ posts.create_time }}</span>
+                <span class="badge badge-pill badge-info">{{ posts.category }}</span>
+                <span class="badge badge-success">浏览{{ posts.views }}</span>
+                <span class="badge badge-secondary">点赞{{ posts.likes }}</span>
+                <span class="badge badge-secondary">评论{{ posts.comment_num }}</span>
             </div>
         </div>
+    </div>
 
 {% endblock %}
 {# #}

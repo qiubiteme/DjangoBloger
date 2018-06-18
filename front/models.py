@@ -5,11 +5,11 @@ from django.utils import timezone
 
 
 class Options(models.Model):
-    """     用于记录网站的一些配置属性信息，如：站点标题，站点描述等    """
-    # 字符串字段
-    keystering = models.CharField(unique=True, max_length=200)
-    # JSON字段
-    valuestreing = models.TextField()
+    """     用于记录网站的信息，如：站点标题，站点描述等    """
+    # 网站名称
+    options_name = models.CharField('网站名称', unique=True, max_length=200,default='积木博客')
+    # 网站描述
+    options_describe = models.TextField('网站描述', blank=True, null=True)
 
     class Meta:
         verbose_name = "站点描述"
@@ -134,10 +134,10 @@ class Posts(models.Model):
 
 class Tag(models.Model):
     """文章标签,用于seo,的处理"""
-    name = models.CharField('标签', max_length=30, unique=True)
+    tag_name = models.CharField('标签', max_length=30, unique=True)
 
     def __str__(self):
-        return self.name
+        return self.tag_name
 
     class Meta:
         verbose_name = "标签"

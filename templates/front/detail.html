@@ -1,106 +1,31 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-{% load staticfiles %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends "front/base.html" %}
+{# title标题动态添加#}
+{% block title %}
+    posts.title
+{% endblock %}
 
-    <title>{{ posts.title }}</title>
-
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'libs/bootstrap/css/bootstrap.css' %}">
-</head>
-<body>
-<!-- 头部区域 -->
-<header class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="{% static 'img/logo.png' %}" alt="积木博客">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>
-
-                    {% for category in category_lsit %}
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">{{ category.category_name }}</a>
-                        </li>
-                    {% empty %}
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">暂时没有分类</a>
-                        </li>
-                    {% endfor %}
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="输入关键字搜索文章"
-                       aria-label="Search">
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">搜索</button>
-            </form>
-            <ul class="navbar-nav   navbar-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">注册</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">登录</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
-
-
-<!--mian contern-->
-<div id="mian" class="container-fluid">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="web-front/html.html">html</a></li>
-                    <li class="list-group-item"><a href="web-front/CSS.html">CSS</a></li>
-                    <li class="list-group-item"><a href="web-front/JavaScript基础.html"></a></li>
-
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-md-9">
-
-            <div class="card">
+{# 文章列表的,占位符  #}
+{% block posts %}
+        <div class="card">
+            <div class="card-body">
+                <span class="text-left">{{ posts.users.nickname }}</span>
+                <h1 class="card-title ">{{ posts.title }}</h1>
+                <p class="card-text">{{ posts.content }}</p>
                 <div class="card-body">
-                    <span class="text-left">{{ posts.users.nickname }}</span>
-                    <h1 class="card-title ">{{ posts.title }}</h1>
-                    <div class="card-body">
-                        <span class="text-left">{{ posts.create_time }}</span>
-                        <span class="badge badge-pill badge-info">{{ posts.category }}</span>
-                        <span class="badge badge-success">浏览{{ posts.views }}</span>
-                        <span class="badge badge-secondary">点赞{{ posts.likes. }}</span>
-                        <span class="badge badge-secondary">评论{{ posts.comment_num }}</span>
-                    </div>
-                    <p class="card-text">{{ posts.content }}</p>
-
+                    <span class="text-left">{{ posts.create_time }}</span>
+                    <span class="badge badge-pill badge-info">{{ posts.category }}</span>
+                    <span class="badge badge-success">浏览{{ posts.views }}</span>
+                    <span class="badge badge-secondary">点赞{{ posts.likes}}</span>
+                    <span class="badge badge-secondary">评论{{ posts.comment_num }}</span>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-
-<!--页脚-->
-<script src="{% static  'libs/jQuery/js/jquery-1.12.4.js.js' %}"></script>
-<script src="{% static 'libs/bootstrap/js/bootstrap.js' %}"></script>
-<script>
-
-</script>
-</body>
-</html>
+{% endblock %}
+{# #}
+{% block nav_left_list %}
+    <li class="list-group-item"><a href="web-front/html.html">html</a></li>
+    <li class="list-group-item"><a href="web-front/CSS.html">CSS</a></li>
+    <li class="list-group-item"><a href="web-front/JavaScript基础.html"></a></li>
+    <li class="list-group-item"><a href="web-front/Web%20API.html">webApi</a></li>
+{% endblock %}

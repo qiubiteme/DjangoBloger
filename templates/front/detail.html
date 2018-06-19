@@ -22,10 +22,20 @@
     </div>
 
 {% endblock %}
-{# #}
+{# 侧边栏导航列表#}
 {% block nav_left_list %}
     <li class="list-group-item"><a href="web-front/html.html">html</a></li>
     <li class="list-group-item"><a href="web-front/CSS.html">CSS</a></li>
     <li class="list-group-item"><a href="web-front/JavaScript基础.html"></a></li>
     <li class="list-group-item"><a href="web-front/Web%20API.html">webApi</a></li>
+{% endblock %}
+{#     文章评论列表的,占位符  #}
+{% block posts_comment %}
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Button</button>
+            <button class="btn btn-outline-secondary" type="button">Button</button>
+        </div>
+    </div>
 {% endblock %}

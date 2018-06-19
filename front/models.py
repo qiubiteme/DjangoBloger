@@ -107,7 +107,6 @@ class Posts(models.Model):
         on_delete=models.CASCADE,
     )
 
-
     # 文章所属分类,一对多关系,一篇文章可以属于多个分类,
     category = models.ForeignKey(
         "Category",
@@ -118,6 +117,10 @@ class Posts(models.Model):
 
     def __str__(self):
         return self.title
+
+    # def get_absolute_url(self):
+    #     """ 博文的绝对地址,不包含域名部分"""
+    #     return self.pk
 
     class Meta:
         ordering = ['-create_time']
@@ -136,6 +139,3 @@ class Tag(models.Model):
     class Meta:
         verbose_name = "标签"
         verbose_name_plural = verbose_name
-
-
-

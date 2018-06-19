@@ -6,7 +6,8 @@ from django.utils import timezone
 
 class Comment(models.Model):
     """     用于记录文章评论信息 """
-
+    # # 文章的url地址
+    # url = models.URLField(blank=True,null=True)
     # 作者
     author = models.CharField("评论用户", max_length=30)
     # 邮箱

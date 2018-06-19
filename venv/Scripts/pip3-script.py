@@ -1,4 +1,4 @@
-#!E:\DjangoBloger\venv\Scripts\python.exe
+#!F:\DjangoBloger\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==9.0.3','console_scripts','pip3'
 __requires__ = 'pip==9.0.3'
 import re

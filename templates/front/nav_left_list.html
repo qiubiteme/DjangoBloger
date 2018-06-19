@@ -1,0 +1,28 @@
+{% load staticfiles %}
+{% load front_tags %}
+<div class="col-md-3">
+    <div class="card">
+        <ul class="list-group">
+            {% get_hot_comment_posts as posts_list %}
+            {% for posts in posts_list %}
+                <a href="{% url  'front:detail' posts.pk %}" class="list-group-item
+                list-group-item-action
+                flex-column
+                align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ posts.title }}</h5>
+                    </div>
+                    <p class="mb-1">{{ posts.content }}</p>
+                    <small>Donec id elit non mi porta.</small>
+                </a>
+            {% empty %}
+                <li class="nav-item">
+                    <a class="nav-link " href="#">暂时没有博客文章</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<script>
+    document.get
+</script>

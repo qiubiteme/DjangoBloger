@@ -33,6 +33,22 @@
 {% endblock %}
 {#     文章评论列表的,占位符  #}
 {% block posts_comment %}
-    {% include "front/comment.html"%}
 
+    {% include "front/comment_list.html" %}
+    {% for comment in comment_list %}
+        <div class="card">
+            <div class="card-body">
+
+                <div class="card-body">
+                    <span class="text-left">{{ comment.created_time }}</span>
+                    <span class="text-left">{{ comment.author }}</span>
+                    <p class="card-text">{{ comment.content|safe }}</p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <li class="nav-item">
+            <a class="nav-link " href="#">暂时没有博客文章</a>
+        </li>
+    {% endfor %}
 {% endblock %}

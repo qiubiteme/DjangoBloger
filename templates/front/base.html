@@ -18,67 +18,15 @@
     <link rel="stylesheet" href="{% static 'css/posts.css' %}">
 </head>
 <body>
+{% include "front/nav_top.html"%}
 <!-- 头部区域 -->
-<header class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ index }}">
-            <img src="{% static 'img/logo.png' %}" alt="积木博客">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            {% get_category_list as  category_lsit %}
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>
-
-                    {% for category in category_lsit %}
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">{{ category.category_name }}</a>
-                        </li>
-                    {% empty %}
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">暂时没有分类</a>
-                        </li>
-                    {% endfor %}
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="输入关键字搜索文章"
-                       aria-label="Search">
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">搜索</button>
-            </form>
-            <ul class="navbar-nav   navbar-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">注册</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">登录</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
 
 
 <!--mian contern-->
 
 <div id="mian" class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
-            <div class="card">
-                <ul class="list-group">
-                    {#                    左侧导航的占位符 #}
-                    {% block nav_left_list %}
-                    {% endblock %}
-
-                </ul>
-            </div>
-        </div>
-
         <div class="col-md-9">
             {#     文章列表的,占位符  #}
             {% block posts %}
@@ -89,7 +37,8 @@
 
             {% endblock %}
         </div>
-
+        {#   左侧导航的占位符 #}
+        {% include "front/nav_left_list.html"%}
     </div>
 </div>
 </div>

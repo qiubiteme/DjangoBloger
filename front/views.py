@@ -32,7 +32,7 @@ def detail(request, posts_id):
                                       ])
 
     # 获取这篇 post 下的全部评论
-    comment_list = posts.comment_set.all()
+    comment_list = Comment.objects.filter(posts_id=posts.pk)
 
     # 将文章、表单、以及文章下的评论列表作为模板变量传给 detail.html 模板，以便渲染相应数据。
     context = {'posts': posts,
@@ -40,14 +40,14 @@ def detail(request, posts_id):
                }
     # get请求是登录界面进入时发生
     if request.method == "GET":
-        messagr_error = None
+
         return render(request, 'front/detail.html', context=context)
     # post请求是提交登录表单的时候
     elif request.POST:
         content = request.POST.get('content')
         if context:
             comment =  Comment(author=posts.users.nickname, email=posts.users.email,
-                               content=content,created_time=timezone.now())
+                               content=content,created_time=timezone.now(),posts_id=posts.pk)
             comment.save()
 
             print(content  )

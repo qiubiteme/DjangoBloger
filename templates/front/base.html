@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 {% load staticfiles %}
+{% load front_tags %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,7 +30,9 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% get_category_list as  category_lsit %}
             <ul class="navbar-nav mr-auto">
+
                 <li class="nav-item active">
                     <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>
 

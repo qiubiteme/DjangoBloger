@@ -40,7 +40,7 @@ def detail(request, posts_id):
                }
     # get请求是登录界面进入时发生
     if request.method == "GET":
-
+        posts.increase_views()
         return render(request, 'front/detail.html', context=context)
     # post请求是提交登录表单的时候
     elif request.POST:
@@ -49,11 +49,8 @@ def detail(request, posts_id):
             comment =  Comment(author=posts.users.nickname, email=posts.users.email,
                                content=content,created_time=timezone.now(),posts_id=posts.pk)
             comment.save()
+            posts.increase_comment_num()
 
-            print(content  )
 
-        # 查询数据库是否有这个用户
-        print("----------try--------------")
         # 重定向到评论的文章
-
         return render(request, 'front/detail.html', context=context)

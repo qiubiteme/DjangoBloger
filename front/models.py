@@ -118,9 +118,20 @@ class Posts(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self):
-    #     """ 博文的绝对地址,不包含域名部分"""
-    #     return self.pk
+    def increase_views(self):
+        """ 统计文章阅读量"""
+        self.views += 1
+        self.save(update_fields=['views'])
+
+    def increase_likes(self):
+        """ 统计文章点赞,使用ajax,待完成"""
+        self.likes += 1
+        self.save(update_fields=['likes'])
+
+    def increase_comment_num(self):
+        """ 统计文章评论数量"""
+        self.comment_num += 1
+        self.save(update_fields=['comment_num'])
 
     class Meta:
         ordering = ['-create_time']

@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
+from django.utils import timezone
+
 from comment.forms import CommentForm
+from comment.models import Comment
 from front.models import Category, Posts
 
 
@@ -27,14 +30,30 @@ def detail(request, posts_id):
                                           'markdown.extensions.codehilite',
                                           'markdown.extensions.toc',
                                       ])
-    # 记得在顶部导入 CommentForm
-    form = CommentForm()
+
     # 获取这篇 post 下的全部评论
     comment_list = posts.comment_set.all()
 
     # 将文章、表单、以及文章下的评论列表作为模板变量传给 detail.html 模板，以便渲染相应数据。
     context = {'posts': posts,
-               'form': form,
                'comment_list': comment_list
                }
-    return render(request, 'front/detail.html', context=context)
+    # get请求是登录界面进入时发生
+    if request.method == "GET":
+        messagr_error = None
+        return render(request, 'front/detail.html', context=context)
+    # post请求是提交登录表单的时候
+    elif request.POST:
+        content = request.POST.get('content')
+        if context:
+            comment =  Comment(author=posts.users.nickname, email=posts.users.email,
+                               content=content,created_time=timezone.now())
+            comment.save()
+
+            print(content  )
+
+        # 查询数据库是否有这个用户
+        print("----------try--------------")
+        # 重定向到评论的文章
+
+        return render(request, 'front/detail.html', context=context)

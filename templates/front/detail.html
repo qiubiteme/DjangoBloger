@@ -1,9 +1,11 @@
+
 {% extends "front/base.html" %}
+{% load staticfiles %}
 {# title标题动态添加#}
 {% block title %}
     posts.title
 {% endblock %}
-
+<link rel="stylesheet" href="{%  static 'css/detail.css' %}">
 {# 文章列表的,占位符  #}
 {% block posts %}
     <div class="card">
@@ -31,11 +33,6 @@
 {% endblock %}
 {#     文章评论列表的,占位符  #}
 {% block posts_comment %}
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Button</button>
-            <button class="btn btn-outline-secondary" type="button">Button</button>
-        </div>
-    </div>
+    {% include "front/comment.html"%}
+
 {% endblock %}

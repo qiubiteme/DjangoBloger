@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from front.models import Options, Users, Category, Posts, Comment, Tag
+from front.models import Options, Users, Category, Posts, Tag
 
 
 class OptionsAdmin(admin.ModelAdmin):
@@ -40,8 +40,4 @@ class TagAdmin(admin.ModelAdmin):
 admin.site.register(Tag, TagAdmin)
 
 
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ['author', 'email', 'created_time', 'content', 'parent_comment', 'is_enable']
 
-
-admin.site.register(Comment, CommentAdmin)

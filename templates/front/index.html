@@ -11,7 +11,7 @@
             <div class="card-body">
                 <span class="text-left">{{ posts.users.nickname }}</span>
                 <h5 class="card-title "><a href="posts/{{ posts.pk }}">{{ posts.title }}</a></h5>
-                <p class="card-text">{{ posts.content|safe }}</p>
+                <p class="card-text">{{ posts.excerpt}}</p>
                 <div class="card-body">
                     <span class="text-left">{{ posts.create_time }}</span>
                     <span class="badge badge-pill badge-info">{{ posts.category }}</span>

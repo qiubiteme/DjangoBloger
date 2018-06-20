@@ -13,7 +13,7 @@ class Comment(models.Model):
     # 邮箱
     email = models.CharField("邮箱", max_length=50)
     # 创建时间
-    created_time = models.DateTimeField("评论时间", default=timezone.now())
+    created_time = models.DateTimeField("评论时间", default=timezone.now)
     # 内容
     content = models.CharField("内容", max_length=1000)
     # 上级评论

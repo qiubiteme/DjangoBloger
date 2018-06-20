@@ -27,7 +27,7 @@ admin.site.register(Category, CategoryAdmin)
 
 class PostsAdmin(admin.ModelAdmin):
     list_display = ['title', 'feature', 'create_time', 'revamp_time', 'status',
-                    'comment_status', 'views', 'likes', 'comment_num', 'users', 'tag', 'category', 'content']
+                    'comment_status', 'views', 'likes', 'comment_num', 'users', 'tag', 'category', 'excerpt']
 
 
 admin.site.register(Posts, PostsAdmin)

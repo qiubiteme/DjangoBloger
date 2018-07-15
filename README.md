@@ -25,11 +25,11 @@ git clone https://github.com/qiubiteme/DjangoBloger.git
  2- 创建python3的虚拟环境
  创建 名称为 venv 的虚拟环境
  ```
-virtualenv venv
+virtualenv ven
  ```
  2.1- 进入虚拟环境虚拟环境
  ```
- source venv/bin/activate
+ source ven/bin/activate
  ```
 2.3- 现在可以安装项目依赖
 在 DjangoBloger 目录下执行

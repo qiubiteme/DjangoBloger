@@ -15,7 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import django
 
-from DjangoBloger.Config import SQL_NAME, SQL_USER, SQL_PASSWORD, SQL_HOST, SQL_PORT, SECRET_KEY_CONFIG, CONFIG_DEBUG
+from DjangoBloger.Config import SQL_NAME, SQL_USER, SQL_PASSWORD, SQL_HOST, SQL_PORT, SECRET_KEY_CONFIG, CONFIG_DEBUG, \
+    CONFIG_ALLOWED_HOSTS
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,7 +29,7 @@ SECRET_KEY = SECRET_KEY_CONFIG
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = CONFIG_DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = CONFIG_ALLOWED_HOSTS
 
 # Application definition
 
@@ -135,3 +136,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# 加入下面的配置
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

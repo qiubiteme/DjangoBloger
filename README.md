@@ -69,6 +69,37 @@ mysql -u root -p
 ```
 show databases;
 ```
+3.2-创建数据库表
+```
+python manage.py makemigrations
+```
+3.3- 生成数据库表
+```
+python manage.py migrate
+```
+如果默认安装mysql数据库,没有自定义配置的,会遇到一个
+```
+django.db.utils.InternalError: (1366, "Incorrect string value:
+```
+的错误,设置方法参阅,配置mysql数据库默认字符集
+4- 运行开发服务器,预览效果
+```
+python manage.py runserver
+```
+4.1 创建管理员账号并输入两次密码
+```
+python manage.py createsuperuser
+```
+提示输入,账号密码
+```
+Username (leave blank to use 'root'):
+Email address:
+Password:
+Password (again):
+Superuser created successfully.
+(ven) root@localhost:~/DjangoBloger#
+```
+
  计划分前端和后端模块,基于Django,主要应用有两个,
  Front 和 uadmin 一个前端用户界面,和一个后端管理
 

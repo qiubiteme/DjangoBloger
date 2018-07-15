@@ -19,11 +19,11 @@ class Options(models.Model):
 
 
 class Users(models.Model):
-    """  用户表   用于记录用户信息        """
+    """  要自定义User必须继承自AbstractBaseUser,用户表   用于记录用户信息        """
     user_name = models.CharField("用户名", max_length=200, blank=True)
-    # URL 别名
+    # 用户唯一性地址,用于定位URL,个人首页
     # slug = models.CharField("用户首页", max_length=200)
-    # 邮箱或者登录名
+    # 继承自AbstractBaseUser,邮箱或者登录名
     email = models.EmailField("邮箱", unique=True)
     # 密码字段
     password = models.CharField("密码", max_length=200)

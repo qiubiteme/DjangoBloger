@@ -18,9 +18,8 @@
     <link rel="stylesheet" href="{% static 'css/posts.css' %}">
 </head>
 <body>
-{% include "front/nav_top.html"%}
+{% include "front/nav_top.html" %}
 <!-- 头部区域 -->
-
 
 
 <!--mian contern-->
@@ -32,13 +31,16 @@
             {% block posts %}
 
             {% endblock %}
+            {#   文章分页     #}
+            {% block posts_page %}
+            {% endblock %}
             {#     文章评论列表的,占位符  #}
             {% block posts_comment %}
 
             {% endblock %}
         </div>
         {#   左侧导航的占位符 #}
-        {% include "front/nav_left_list.html"%}
+        {% include "front/nav_left_list.html" %}
     </div>
 </div>
 </div>

@@ -1,5 +1,3 @@
-
-
 import markdown as markdown
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
@@ -12,11 +10,15 @@ from comment.forms import CommentForm
 from comment.models import Comment
 from front.models import Category, Posts
 
+
 class IndexView(ListView):
     """ 首页的视图函数 """
     model = Posts
     template_name = 'front/index.html'
     context_object_name = 'posts_list'
+    # 指定 paginate_by 属性后开启分页功能，其值代表每一页包含多少篇文章
+    paginate_by = 6
+
 
 def detail(request, posts_id):
     """" 根据模板页传递的,id查询详情文章"""
@@ -44,14 +46,10 @@ def detail(request, posts_id):
     elif request.POST:
         content = request.POST.get('content')
         if context:
-            comment =  Comment(author=posts.users.nickname, email=posts.users.email,
-                               content=content,created_time=timezone.now(),posts_id=posts.pk)
+            comment = Comment(author=posts.users.nickname, email=posts.users.email,
+                              content=content, created_time=timezone.now(), posts_id=posts.pk)
             comment.save()
             posts.increase_comment_num()
 
-
         # 重定向到评论的文章
         return render(request, 'front/detail.html', context=context)
-
-
-

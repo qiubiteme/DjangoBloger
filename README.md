@@ -33,12 +33,12 @@ git clone https://github.com/qiubiteme/DjangoBloger.git
  创建 名称为 venv 的虚拟环境
 
  ```
-virtualenv ven
+virtualenv venv
  ```
 #####  2.1- 进入虚拟环境虚拟环境
 
  ```
- source ven/bin/activate
+ source venv/bin/activate
  ```
 #####  这是退出虚拟环境命令
 
@@ -165,22 +165,32 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory=/home/DjangoBloger
-ExecStart=/home/DjangoBloger/ven/bin/gunicorn --workers 3 --bind unix:/home/DjangoBloger/DjangoBloger.sock DjangoBloger.wsgi:application
+WorkingDirectory=/home/qiubite/DjangoBloger
+ExecStart=/home/qiubite/DjangoBloger/venv/bin/gunicorn --workers 3 --bind unix:/home/qiubite/DjangoBloger/DjangoBloger.sock DjangoBloger.wsgi:application
 
 [Install]
 antedBy=multi-user.target
 ```
 systemd服务文件就完成了。立即保存并关闭它
 
-### 5.2- 加载服务
+### 5.2- 启动服务
 
 现在可以启动我们创建的Gunicorn服务并启用它以便它在启动时启动
+
+**修改gunicorn.service 后 执行** 
+
+```
+systemctl daemon-reload
+```
+
+**启动服务**
 
 ```
 sudo systemctl start gunicorn
 sudo systemctl enable gunicorn
 ```
+启动gunicorn 就可以访问,只是还没有静态文件.静态文件资源使用Nginx代理
+
 ### 5.3-检查Gunicorn套接字文件
 
 检查进程的状态以确定它是否能够启动：**没有报错恭喜你,**
@@ -194,6 +204,12 @@ sudo systemctl status gunicorn
 sudo journalctl -u gunicorn
 ```
 ## 6-Nginx配置
+
+### ubuntu下安装nginx
+
+```
+apt-get install nginx 
+```
 
 将Nginx配置为代理传递给Gunicorn
 
@@ -230,12 +246,12 @@ server {
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/DjangoBloger/statict;
+        root /home/qiubite/DjangoBloger;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/DjangoBloger/DjangoBloger.sock;
+        proxy_pass http://unix:/home/qiubite/DjangoBloger/DjangoBloger.sock;
     }
 }
 ```
@@ -272,6 +288,8 @@ sudo ufw allow 'Nginx Full'
 ```
 sudo apt-get install ufw
 ```
+
+###### 端口开放完成,就可以查看博客的展示效果,访问域名,愉快的玩耍吧
 
 
 

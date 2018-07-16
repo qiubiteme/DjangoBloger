@@ -107,7 +107,10 @@ Superuser created successfully.
 ```
 python manage.py collectstatic
 ```
-
+4.4- 安装 Gunicorn 服务
+```
+pip install Gunicorn
+```
  计划分前端和后端模块,基于Django,主要应用有两个,
  Front 和 uadmin 一个前端用户界面,和一个后端管理
 
